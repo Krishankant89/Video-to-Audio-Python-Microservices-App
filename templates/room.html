@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuickMeet - {{ room_id }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="room-header">
+    <span>Room code: <strong>{{ room_id }}</strong> <small>(up to 10 people)</small></span>
+    <button onclick="copyLink()">Copy Invite Link</button>
+</div>
+
+<div class="video-grid" id="video-grid">
+    <div class="tile" id="tile-local">
+        <video id="localVideo" autoplay muted playsinline></video>
+        <span class="tile-label">You</span>
+    </div>
+</div>
+
+<div class="controls">
+    <button id="micBtn" onclick="toggleMic()">Mute</button>
+    <button id="camBtn" onclick="toggleCamera()">Camera Off</button>
+    <button onclick="leaveMeeting()" class="btn-danger">Leave</button>
+</div>
+
+<div class="chat-box">
+    <div id="chat"></div>
+    <div class="chat-input">
+        <input id="msg" placeholder="Type message">
+        <button onclick="sendMsg()">Send</button>
+    </div>
+</div>
+
+<script>
+    const room = "{{ room_id }}";
+</script>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>

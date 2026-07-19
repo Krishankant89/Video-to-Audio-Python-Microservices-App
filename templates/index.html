@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuickMeet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="home-card">
+    <h1>QUICK<br>MEET</h1>
+    <p class="subtitle">The quickest way to connect, face to face.</p>
+
+    <a class="btn btn-primary" href="/create">+ New Meeting</a>
+
+    <div class="divider">or</div>
+
+    <form onsubmit="joinRoom(event)" class="join-form">
+        <input id="room" placeholder="Enter a code (e.g. abc-defg-hij)">
+        <button type="submit" class="btn btn-secondary">Join</button>
+    </form>
+
+    <div class="divider">or</div>
+
+    <a class="btn btn-secondary" href="/random-chat">🎲 Talk to a Stranger</a>
+</div>
+
+<script>
+function joinRoom(e) {
+    e.preventDefault();
+    const room = document.getElementById("room").value.trim();
+    if (!room) return;
+    window.location.href = "/room/" + encodeURIComponent(room);
+}
+</script>
+
+</body>
+</html>
